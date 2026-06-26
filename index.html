@@ -1171,6 +1171,9 @@
       const buf=await renderLoop();
       audioEl=new Audio(); audioEl.src=URL.createObjectURL(wav(buf));
       audioEl.loop=true; audioEl.volume=0.85; audioEl.preload='auto';
+      audioEl.setAttribute('playsinline',''); audioEl.style.display='none';
+      document.body.appendChild(audioEl);
+      window.__audio=audioEl;
       ready=true;
       if(wantPlay) doPlay();
     }catch(e){ console.warn('music render failed',e); btn.style.display='none'; }
