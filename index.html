@@ -1062,149 +1062,26 @@
 </script>
 
 <script>
-/* ============================================================
-   Cinematic generative soundtrack — generated in-browser, then
-   rendered to a looping <audio> element so it plays reliably when
-   hosted (incl. iPhones, where the Web Audio API is silenced by the
-   ring/silent switch but <audio> media playback is not).
-   ============================================================ */
+/* Background music — plays the uploaded track, looping, toggled by the ♪ button. */
 (function(){
-  const btn = document.getElementById('musicBtn');
-  let audioEl=null, ready=false, building=false, enabled=true, wantPlay=false;
-
-  const A4=440, mtof=n=>A4*Math.pow(2,(n-69)/12);
-  const CHORDS=[
-    {pad:[48,55,64,67], scale:[60,62,64,67,69,72,74]}, // C
-    {pad:[53,60,65,69], scale:[60,65,69,72,74,77,81]}, // F
-    {pad:[45,57,64,69], scale:[57,60,64,69,72,76,81]}, // Am
-    {pad:[43,55,62,67], scale:[59,62,67,71,74,79,83]}, // G
-  ];
-  const BEAT=0.62, CB=16;
-
-  function piano(ac,master,rev,freq,t,dur,vel){
-    const g=ac.createGain();
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(vel,t+0.012);
-    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
-    [[1,1],[2,0.45],[3,0.18],[4,0.08]].forEach(([m,a])=>{
-      const o=ac.createOscillator(); o.type='sine';
-      o.frequency.value=freq*m; o.detune.value=(m-1)*1.5;
-      const pg=ac.createGain(); pg.gain.value=a;
-      o.connect(pg).connect(g); o.start(t); o.stop(t+dur+0.05);
-    });
-    g.connect(master); const rg=ac.createGain(); rg.gain.value=0.55; g.connect(rg).connect(rev);
-  }
-  function pad(ac,master,rev,freq,t,dur,vel,bright){
-    const g=ac.createGain();
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(vel,t+1.2);
-    g.gain.setValueAtTime(vel,Math.max(t+1.2,t+dur-1.8));
-    g.gain.linearRampToValueAtTime(0.0001,t+dur);
-    const filt=ac.createBiquadFilter(); filt.type='lowpass';
-    filt.frequency.value=bright?1600:900; filt.Q.value=0.6;
-    [-7,0,7].forEach(det=>{
-      const o=ac.createOscillator(); o.type=bright?'sawtooth':'triangle';
-      o.frequency.value=freq; o.detune.value=det;
-      o.connect(filt); o.start(t); o.stop(t+dur+0.1);
-    });
-    filt.connect(g); g.connect(master);
-    const rg=ac.createGain(); rg.gain.value=0.6; g.connect(rg).connect(rev);
-  }
-
-  // render one seamless progression cycle offline
-  function renderLoop(){
-    const SR=44100;
-    const totalBeats=CHORDS.length*CB;
-    const DUR=totalBeats*BEAT;                 // ~39.7s, loops on the progression
-    const OAC=window.OfflineAudioContext||window.webkitOfflineAudioContext;
-    const oac=new OAC(2, Math.ceil(SR*DUR), SR);
-
-    const master=oac.createGain(); master.gain.value=0.55;
-    const mf=oac.createBiquadFilter(); mf.type='lowpass'; mf.frequency.value=6000; mf.Q.value=0.4;
-    const rev=oac.createConvolver();
-    const irlen=Math.floor(SR*2.6), irb=oac.createBuffer(2,irlen,SR);
-    for(let c=0;c<2;c++){const d=irb.getChannelData(c);
-      for(let i=0;i<irlen;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/irlen,2.6);}
-    rev.buffer=irb;
-    const revG=oac.createGain(); revG.gain.value=0.8;
-    const out=oac.createGain(); out.gain.value=0.9;
-    master.connect(mf); mf.connect(out); rev.connect(revG); revG.connect(out); out.connect(oac.destination);
-
-    for(let b=0;b<totalBeats;b++){
-      const t=b*BEAT;
-      const chordPos=b%CB, chord=CHORDS[Math.floor(b/CB)%CHORDS.length];
-      if(chordPos===0){
-        const dur=BEAT*CB;
-        chord.pad.forEach((n,i)=>pad(oac,master,rev,mtof(n),t,dur,0.10+0.04*(i===0?1:0),false));
-        chord.pad.slice(1).forEach(n=>pad(oac,master,rev,mtof(n+12),t+0.2,dur-0.4,0.06,true));
-      }
-      if(chordPos%8===0) piano(oac,master,rev,mtof(chord.pad[0]),t,2.6,0.20);
-      if(Math.random()<0.62){
-        const sc=chord.scale, pick=sc[(Math.floor(b*1.7)+(Math.random()<0.4?1:0))%sc.length];
-        const oct=(Math.random()<0.3)?12:0;
-        piano(oac,master,rev,mtof(pick+oct),t+Math.random()*0.04,2.6,0.16);
-        if(Math.random()<0.22) piano(oac,master,rev,mtof(pick+oct+4),t+0.02,2.2,0.10);
-      }
-    }
-    return oac.startRendering();
-  }
-
-  function wav(buf){
-    const nc=buf.numberOfChannels, len=buf.length*nc*2+44;
-    const ab=new ArrayBuffer(len), v=new DataView(ab); let p=0;
-    const ws=s=>{for(let i=0;i<s.length;i++)v.setUint8(p++,s.charCodeAt(i));};
-    const u32=x=>{v.setUint32(p,x,true);p+=4;}, u16=x=>{v.setUint16(p,x,true);p+=2;};
-    ws('RIFF');u32(len-8);ws('WAVE');ws('fmt ');u32(16);u16(1);u16(nc);
-    u32(buf.sampleRate);u32(buf.sampleRate*nc*2);u16(nc*2);u16(16);ws('data');u32(buf.length*nc*2);
-    const ch=[]; for(let c=0;c<nc;c++) ch.push(buf.getChannelData(c));
-    for(let i=0;i<buf.length;i++) for(let c=0;c<nc;c++){
-      let s=Math.max(-1,Math.min(1,ch[c][i])); v.setInt16(p, s<0?s*0x8000:s*0x7FFF, true); p+=2;
-    }
-    return new Blob([ab],{type:'audio/wav'});
-  }
-
-  async function prepare(){
-    if(ready||building) return;
-    if(!(window.OfflineAudioContext||window.webkitOfflineAudioContext)){ btn.style.display='none'; return; }
-    building=true;
-    try{
-      const buf=await renderLoop();
-      audioEl=new Audio(); audioEl.src=URL.createObjectURL(wav(buf));
-      audioEl.loop=true; audioEl.volume=0.85; audioEl.preload='auto';
-      audioEl.setAttribute('playsinline',''); audioEl.style.display='none';
-      document.body.appendChild(audioEl);
-      window.__audio=audioEl;
-      ready=true;
-      if(wantPlay) doPlay();
-    }catch(e){ console.warn('music render failed',e); btn.style.display='none'; }
-    building=false;
-  }
-
-  function doPlay(){
-    if(!audioEl) return;
-    audioEl.play().then(()=>{enabled=true;updateBtn();})
-                  .catch(()=>{ enabled=true; updateBtn(); }); // will play on next gesture
-  }
-  function doPause(){ if(audioEl) audioEl.pause(); enabled=false; updateBtn(); }
-  function updateBtn(){ btn.classList.toggle('muted', !audioEl || audioEl.paused); }
-
+  const btn=document.getElementById('musicBtn');
+  const audio=new Audio('music.mp3');
+  audio.loop=true; audio.preload='auto'; audio.volume=0.55;
+  audio.setAttribute('playsinline','');
+  let userPaused=false;
+  function updateBtn(){ btn.classList.toggle('muted', audio.paused); }
+  function play(){ audio.play().then(updateBtn).catch(updateBtn); }
+  function pause(){ audio.pause(); updateBtn(); }
   btn.addEventListener('click', e=>{
     e.stopPropagation();
-    if(!ready){ wantPlay=true; prepare(); return; }
-    if(audioEl.paused) doPlay(); else doPause();
+    if(audio.paused){ userPaused=false; play(); } else { userPaused=true; pause(); }
   });
-
-  // start on the first interaction with the story (same gesture that begins it)
-  function kick(){
-    if(!ready){ wantPlay=true; prepare(); }
-    else if(enabled && audioEl.paused){ doPlay(); }
-  }
+  // start on the first interaction (same tap that begins the story)
+  function kick(){ if(!userPaused && audio.paused) play(); }
   ['pointerdown','click','keydown','touchend'].forEach(ev=>
     document.addEventListener(ev, kick, {passive:true}));
-
-  // pre-render immediately so the clip is ready before the first click
-  if(document.readyState!=='loading') prepare();
-  else document.addEventListener('DOMContentLoaded', prepare);
+  audio.addEventListener('play', updateBtn);
+  audio.addEventListener('pause', updateBtn);
   updateBtn();
 })();
 </script>
