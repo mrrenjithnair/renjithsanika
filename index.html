@@ -546,7 +546,7 @@
           <p class="m1-lg reveal">found each other.</p>
 
           <div class="m1-photo reveal">
-            <img src="center.png" alt="The Beginning" />
+            <img src="center.jpg" alt="The Beginning" />
             <span class="m1-burst"><svg width="48" height="42" viewBox="0 0 48 42"><g stroke="#ffd0d0" stroke-width="2" stroke-linecap="round"><line x1="24" y1="2" x2="24" y2="9"/><line x1="11" y1="6" x2="15" y2="12"/><line x1="37" y1="6" x2="33" y2="12"/><line x1="3" y1="15" x2="10" y2="18"/><line x1="45" y1="15" x2="38" y2="18"/></g><path d="M24 38 C 7 25, 5 15, 14 13 C 20 12, 24 18, 24 20 C 24 18, 28 12, 34 13 C 43 15, 41 25, 24 38 Z" fill="#fbdada"/></svg></span>
           </div>
 
@@ -575,9 +575,9 @@
           <p class="md reveal">It all started on</p>
           <p class="shaadi reveal">shaadi<small>.com</small></p>
           <div class="matchrow reveal">
-            <div class="pcard"><div class="av"><img class="profilepic" alt="Renjith" src="renjithProfile.png" /></div><b>Renjith Nair</b><small>Ambernath</small></div>
+            <div class="pcard"><div class="av"><img class="profilepic" alt="Renjith" src="renjithProfile.jpg" /></div><b>Renjith Nair</b><small>Ambernath</small></div>
             <div class="heartbtn beat">♥</div>
-            <div class="pcard"><div class="av"><img class="profilepic" alt="Sanika" src="profileSanika.png" /></div><b>Sanika Nair</b><small>Nalasopara</small></div>
+            <div class="pcard"><div class="av"><img class="profilepic" alt="Sanika" src="profileSanika.jpg" /></div><b>Sanika Nair</b><small>Nalasopara</small></div>
           </div>
           <p class="reveal" style="font-size:18px;">Two profiles, two lives,<br>and a chance that changed everything.</p>
           <button class="next reveal" data-next>Next</button>
@@ -601,7 +601,7 @@
 
           <div class="m3-row reveal">
             <div class="m3-person">
-              <div class="m3-circle"><img src="renjithProfile.png" alt="Renjith Nair" /></div>
+              <div class="m3-circle"><img src="renjithProfile.jpg" alt="Renjith Nair" /></div>
               <div class="m3-name">Renjith Nair <span class="heart">♥</span></div>
             </div>
 
@@ -614,7 +614,7 @@
             </div>
 
             <div class="m3-person">
-              <div class="m3-circle"><img src="profileSanika.png" alt="Sanika Nair" /></div>
+              <div class="m3-circle"><img src="profileSanika.jpg" alt="Sanika Nair" /></div>
               <div class="m3-name">Sanika Nair <span class="heart">♥</span></div>
             </div>
           </div>
@@ -823,7 +823,7 @@
           <div class="m1-hero reveal">The Decision</div>
           <div class="m9-divider reveal"><span></span><span class="heart">♥</span><span></span></div>
           <p class="reveal" style="font-size:20px;">We knew,<br>we didn't want<br>anything casual.</p>
-          <div class="center-photo reveal"><img src="11.png" alt="The Decision" /><span class="ph-heart"><svg width="34" height="26" viewBox="0 0 34 26"><path d="M17 24 C 2 13, 1 6, 8 4 C 12 3, 17 8, 17 10 C 17 8, 22 3, 26 4 C 33 6, 32 13, 17 24 Z" fill="none" stroke="#fff" stroke-width="1.8"/></svg></span></div>
+          <div class="center-photo reveal"><img src="decision.jpg" alt="The Decision" /><span class="ph-heart"><svg width="34" height="26" viewBox="0 0 34 26"><path d="M17 24 C 2 13, 1 6, 8 4 C 12 3, 17 8, 17 10 C 17 8, 22 3, 26 4 C 33 6, 32 13, 17 24 Z" fill="none" stroke="#fff" stroke-width="1.8"/></svg></span></div>
           <p class="reveal" style="font-size:20px;">We wanted<br><em class="s">forever.</em></p>
           <button class="next reveal" data-next>Next&nbsp;&nbsp;→</button>
         </div>
@@ -840,7 +840,7 @@
           <div class="m1-hero reveal">The Promise</div>
           <div class="m9-divider reveal"><span></span><span class="heart">♥</span><span></span></div>
           <p class="reveal" style="font-size:20px;">A promise to<br><em class="s">love, respect,</em><br>and grow together, always.</p>
-          <div class="center-photo reveal"><img src="12.png" alt="The Promise" /><span class="ph-heart"><svg width="34" height="26" viewBox="0 0 34 26"><path d="M17 24 C 2 13, 1 6, 8 4 C 12 3, 17 8, 17 10 C 17 8, 22 3, 26 4 C 33 6, 32 13, 17 24 Z" fill="none" stroke="#fff" stroke-width="1.8"/></svg></span></div>
+          <div class="center-photo reveal"><img src="promise.jpg" alt="The Promise" /><span class="ph-heart"><svg width="34" height="26" viewBox="0 0 34 26"><path d="M17 24 C 2 13, 1 6, 8 4 C 12 3, 17 8, 17 10 C 17 8, 22 3, 26 4 C 33 6, 32 13, 17 24 Z" fill="none" stroke="#fff" stroke-width="1.8"/></svg></span></div>
           <div class="heartline reveal beat">♥</div>
           <button class="next reveal" data-next>Next&nbsp;&nbsp;→</button>
         </div>
@@ -1063,187 +1063,145 @@
 
 <script>
 /* ============================================================
-   Cinematic generative soundtrack — pure Web Audio, no files.
-   Arc: wind ambience → single piano → warm melody → strings →
-        violin build → orchestral swell → quiet piano ending → loop
+   Cinematic generative soundtrack — generated in-browser, then
+   rendered to a looping <audio> element so it plays reliably when
+   hosted (incl. iPhones, where the Web Audio API is silenced by the
+   ring/silent switch but <audio> media playback is not).
    ============================================================ */
 (function(){
   const btn = document.getElementById('musicBtn');
-  let ctx, master, masterFilter, reverb, windGain, analyser, started=false, enabled=true;
-  let lookahead, loopStart=0;
+  let audioEl=null, ready=false, building=false, enabled=true, wantPlay=false;
 
-  const A4=440;
-  const mtof = n => A4*Math.pow(2,(n-69)/12);
-
-  function buildReverb(){
-    const len = Math.floor(ctx.sampleRate*3.0);
-    const buf = ctx.createBuffer(2,len,ctx.sampleRate);
-    for(let ch=0; ch<2; ch++){
-      const d=buf.getChannelData(ch);
-      for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.6);
-    }
-    const c=ctx.createConvolver(); c.buffer=buf; return c;
-  }
-
-  // piano-ish voice (additive sines + quick decay)
-  function piano(freq,t,dur,vel){
-    const g=ctx.createGain();
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(vel,t+0.012);
-    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
-    [[1,1],[2,0.45],[3,0.18],[4,0.08]].forEach(([m,a])=>{
-      const o=ctx.createOscillator();
-      o.type='sine'; o.frequency.value=freq*m; o.detune.value=(m-1)*1.5;
-      const pg=ctx.createGain(); pg.gain.value=a;
-      o.connect(pg).connect(g); o.start(t); o.stop(t+dur+0.05);
-    });
-    g.connect(master); const rg=ctx.createGain(); rg.gain.value=0.55; g.connect(rg).connect(reverb);
-  }
-
-  // warm sustained pad / strings (detuned osc through lowpass, slow swell)
-  function pad(freq,t,dur,vel,bright){
-    const g=ctx.createGain();
-    g.gain.setValueAtTime(0.0001,t);
-    g.gain.linearRampToValueAtTime(vel,t+1.2);
-    g.gain.setValueAtTime(vel,Math.max(t+1.2,t+dur-1.8));
-    g.gain.linearRampToValueAtTime(0.0001,t+dur);
-    const filt=ctx.createBiquadFilter(); filt.type='lowpass';
-    filt.frequency.value=bright?1600:900; filt.Q.value=0.6;
-    [-7,0,7].forEach(det=>{
-      const o=ctx.createOscillator(); o.type=bright?'sawtooth':'triangle';
-      o.frequency.value=freq; o.detune.value=det;
-      o.connect(filt); o.start(t); o.stop(t+dur+0.1);
-    });
-    filt.connect(g); g.connect(master);
-    const rg=ctx.createGain(); rg.gain.value=0.6; g.connect(rg).connect(reverb);
-  }
-
+  const A4=440, mtof=n=>A4*Math.pow(2,(n-69)/12);
   const CHORDS=[
     {pad:[48,55,64,67], scale:[60,62,64,67,69,72,74]}, // C
     {pad:[53,60,65,69], scale:[60,65,69,72,74,77,81]}, // F
     {pad:[45,57,64,69], scale:[57,60,64,69,72,76,81]}, // Am
     {pad:[43,55,62,67], scale:[59,62,67,71,74,79,83]}, // G
   ];
-  const BEAT=0.62, CHORD_BEATS=16;
+  const BEAT=0.62, CB=16;
 
-  // intensity envelope across the ~3-min loop (louder, audible quickly)
-  const LOOP=178;
-  function arc(tt){
-    if(tt<2)   return {dens:0.30,mel:0.6,strings:0,    master:0.34}; // gentle open (brief)
-    if(tt<20)  return {dens:0.42,mel:0.7,strings:0,    master:0.42}; // piano notes
-    if(tt<60)  return {dens:0.55,mel:0.78,strings:0.10,master:0.52}; // warm melody + pad
-    if(tt<105) return {dens:0.62,mel:0.82,strings:0.22,master:0.58}; // strings join
-    if(tt<140) return {dens:0.78,mel:0.9, strings:0.30,master:0.64}; // builds
-    if(tt<170) return {dens:0.88,mel:0.96,strings:0.38,master:0.72}; // swell
-    return       {dens:0.30,mel:0.6, strings:0.08,master:0.34};      // quiet ending
+  function piano(ac,master,rev,freq,t,dur,vel){
+    const g=ac.createGain();
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(vel,t+0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    [[1,1],[2,0.45],[3,0.18],[4,0.08]].forEach(([m,a])=>{
+      const o=ac.createOscillator(); o.type='sine';
+      o.frequency.value=freq*m; o.detune.value=(m-1)*1.5;
+      const pg=ac.createGain(); pg.gain.value=a;
+      o.connect(pg).connect(g); o.start(t); o.stop(t+dur+0.05);
+    });
+    g.connect(master); const rg=ac.createGain(); rg.gain.value=0.55; g.connect(rg).connect(rev);
+  }
+  function pad(ac,master,rev,freq,t,dur,vel,bright){
+    const g=ac.createGain();
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(vel,t+1.2);
+    g.gain.setValueAtTime(vel,Math.max(t+1.2,t+dur-1.8));
+    g.gain.linearRampToValueAtTime(0.0001,t+dur);
+    const filt=ac.createBiquadFilter(); filt.type='lowpass';
+    filt.frequency.value=bright?1600:900; filt.Q.value=0.6;
+    [-7,0,7].forEach(det=>{
+      const o=ac.createOscillator(); o.type=bright?'sawtooth':'triangle';
+      o.frequency.value=freq; o.detune.value=det;
+      o.connect(filt); o.start(t); o.stop(t+dur+0.1);
+    });
+    filt.connect(g); g.connect(master);
+    const rg=ac.createGain(); rg.gain.value=0.6; g.connect(rg).connect(rev);
   }
 
-  let beatIndex=0, nextNoteTime=0;
-  function scheduler(){
-    if(!ctx) return;
-    const now=ctx.currentTime;
-    while(nextNoteTime < now + 0.25){
-      let tt=nextNoteTime-loopStart;
-      if(tt>=LOOP){ loopStart=nextNoteTime; tt=0; beatIndex=0; }
-      const A=arc(tt);
-      // smoothly track the arc's loudness WITHOUT cancelling (cancel here was killing the ramp)
-      master.gain.linearRampToValueAtTime(enabled?A.master:0.0001, nextNoteTime+0.4);
-      windGain.gain.linearRampToValueAtTime(enabled?(0.02+A.strings*0.015):0.0001, nextNoteTime+0.5);
+  // render one seamless progression cycle offline
+  function renderLoop(){
+    const SR=44100;
+    const totalBeats=CHORDS.length*CB;
+    const DUR=totalBeats*BEAT;                 // ~39.7s, loops on the progression
+    const OAC=window.OfflineAudioContext||window.webkitOfflineAudioContext;
+    const oac=new OAC(2, Math.ceil(SR*DUR), SR);
 
-      const chordPos = beatIndex % CHORD_BEATS;
-      const chord = CHORDS[Math.floor(beatIndex/CHORD_BEATS)%CHORDS.length];
+    const master=oac.createGain(); master.gain.value=0.55;
+    const mf=oac.createBiquadFilter(); mf.type='lowpass'; mf.frequency.value=6000; mf.Q.value=0.4;
+    const rev=oac.createConvolver();
+    const irlen=Math.floor(SR*2.6), irb=oac.createBuffer(2,irlen,SR);
+    for(let c=0;c<2;c++){const d=irb.getChannelData(c);
+      for(let i=0;i<irlen;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/irlen,2.6);}
+    rev.buffer=irb;
+    const revG=oac.createGain(); revG.gain.value=0.8;
+    const out=oac.createGain(); out.gain.value=0.9;
+    master.connect(mf); mf.connect(out); rev.connect(revG); revG.connect(out); out.connect(oac.destination);
 
+    for(let b=0;b<totalBeats;b++){
+      const t=b*BEAT;
+      const chordPos=b%CB, chord=CHORDS[Math.floor(b/CB)%CHORDS.length];
       if(chordPos===0){
-        const dur=BEAT*CHORD_BEATS;
-        chord.pad.forEach((n,i)=> pad(mtof(n), nextNoteTime, dur, 0.10+0.04*(i===0?1:0), false));
-        if(A.strings>0){
-          chord.pad.slice(1).forEach(n=> pad(mtof(n+12), nextNoteTime+0.2, dur-0.4, A.strings*0.10, true));
-        }
+        const dur=BEAT*CB;
+        chord.pad.forEach((n,i)=>pad(oac,master,rev,mtof(n),t,dur,0.10+0.04*(i===0?1:0),false));
+        chord.pad.slice(1).forEach(n=>pad(oac,master,rev,mtof(n+12),t+0.2,dur-0.4,0.06,true));
       }
-      if(chordPos%8===0){
-        piano(mtof(chord.pad[0]), nextNoteTime, 2.6, 0.22);
+      if(chordPos%8===0) piano(oac,master,rev,mtof(chord.pad[0]),t,2.6,0.20);
+      if(Math.random()<0.62){
+        const sc=chord.scale, pick=sc[(Math.floor(b*1.7)+(Math.random()<0.4?1:0))%sc.length];
+        const oct=(Math.random()<0.3)?12:0;
+        piano(oac,master,rev,mtof(pick+oct),t+Math.random()*0.04,2.6,0.16);
+        if(Math.random()<0.22) piano(oac,master,rev,mtof(pick+oct+4),t+0.02,2.2,0.10);
       }
-      if(A.mel>0 && Math.random() < A.dens){
-        const sc=chord.scale;
-        const pick = sc[(Math.floor(beatIndex*1.7)+ (Math.random()<0.4?1:0)) % sc.length];
-        const oct = (A.strings>0.2 && Math.random()<0.35)?12:0;
-        piano(mtof(pick+oct), nextNoteTime+(Math.random()*0.04), 2.6, 0.16+A.mel*0.10);
-        if(A.dens>0.6 && Math.random()<0.25){
-          piano(mtof(pick+oct+4), nextNoteTime+0.02, 2.2, 0.10+A.mel*0.06);
-        }
-      }
-      nextNoteTime += BEAT;
-      beatIndex++;
     }
+    return oac.startRendering();
   }
 
-  function startAudio(){
-    if(started) return; started=true;
-    const AC = window.AudioContext||window.webkitAudioContext;
-    if(!AC){ btn.style.display='none'; return; }
-    ctx = new AC();
-    if(ctx.state==='suspended') ctx.resume();
-
-    master = ctx.createGain(); master.gain.value=0.0001;
-    masterFilter = ctx.createBiquadFilter(); masterFilter.type='lowpass';
-    masterFilter.frequency.value=6000; masterFilter.Q.value=0.4;
-    reverb = buildReverb();
-    const revGain=ctx.createGain(); revGain.gain.value=0.85;
-    analyser = ctx.createAnalyser(); analyser.fftSize=512;
-    const outGain = ctx.createGain(); outGain.gain.value=1.0;
-
-    // everything → outGain → analyser → destination
-    master.connect(masterFilter); masterFilter.connect(outGain);
-    reverb.connect(revGain); revGain.connect(outGain);
-    outGain.connect(analyser); analyser.connect(ctx.destination);
-
-    // wind/air ambience
-    const nlen=ctx.sampleRate*4;
-    const nbuf=ctx.createBuffer(1,nlen,ctx.sampleRate);
-    const nd=nbuf.getChannelData(0); for(let i=0;i<nlen;i++) nd[i]=Math.random()*2-1;
-    const noise=ctx.createBufferSource(); noise.buffer=nbuf; noise.loop=true;
-    const bp=ctx.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=520; bp.Q.value=0.7;
-    const lfo=ctx.createOscillator(); lfo.frequency.value=0.07;
-    const lfoG=ctx.createGain(); lfoG.gain.value=180;
-    lfo.connect(lfoG).connect(bp.frequency);
-    windGain=ctx.createGain(); windGain.gain.value=0.02;
-    noise.connect(bp).connect(windGain); windGain.connect(outGain);
-    noise.start(); lfo.start();
-
-    loopStart=ctx.currentTime+0.05; nextNoteTime=loopStart; beatIndex=0;
-    scheduler();
-    lookahead=setInterval(scheduler,60);
-    updateBtn();
-
-    // expose for debugging / verification
-    window.__music={
-      get state(){return ctx.state;},
-      get masterGain(){return master.gain.value;},
-      level(){ if(!analyser) return 0; const a=new Uint8Array(analyser.fftSize);
-        analyser.getByteTimeDomainData(a); let peak=0;
-        for(let i=0;i<a.length;i++){const v=Math.abs(a[i]-128); if(v>peak)peak=v;} return peak; }
-    };
+  function wav(buf){
+    const nc=buf.numberOfChannels, len=buf.length*nc*2+44;
+    const ab=new ArrayBuffer(len), v=new DataView(ab); let p=0;
+    const ws=s=>{for(let i=0;i<s.length;i++)v.setUint8(p++,s.charCodeAt(i));};
+    const u32=x=>{v.setUint32(p,x,true);p+=4;}, u16=x=>{v.setUint16(p,x,true);p+=2;};
+    ws('RIFF');u32(len-8);ws('WAVE');ws('fmt ');u32(16);u16(1);u16(nc);
+    u32(buf.sampleRate);u32(buf.sampleRate*nc*2);u16(nc*2);u16(16);ws('data');u32(buf.length*nc*2);
+    const ch=[]; for(let c=0;c<nc;c++) ch.push(buf.getChannelData(c));
+    for(let i=0;i<buf.length;i++) for(let c=0;c<nc;c++){
+      let s=Math.max(-1,Math.min(1,ch[c][i])); v.setInt16(p, s<0?s*0x8000:s*0x7FFF, true); p+=2;
+    }
+    return new Blob([ab],{type:'audio/wav'});
   }
 
-  function updateBtn(){ btn.classList.toggle('muted',!enabled); }
-
-  function toggle(){
-    if(!started){ enabled=true; startAudio(); return; }
-    enabled=!enabled;
-    if(enabled && ctx.state==='suspended') ctx.resume();
-    if(!enabled) master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime+0.3);
-    updateBtn();
+  async function prepare(){
+    if(ready||building) return;
+    if(!(window.OfflineAudioContext||window.webkitOfflineAudioContext)){ btn.style.display='none'; return; }
+    building=true;
+    try{
+      const buf=await renderLoop();
+      audioEl=new Audio(); audioEl.src=URL.createObjectURL(wav(buf));
+      audioEl.loop=true; audioEl.volume=0.85; audioEl.preload='auto';
+      ready=true;
+      if(wantPlay) doPlay();
+    }catch(e){ console.warn('music render failed',e); btn.style.display='none'; }
+    building=false;
   }
 
-  btn.addEventListener('click', e=>{ e.stopPropagation(); toggle(); });
+  function doPlay(){
+    if(!audioEl) return;
+    audioEl.play().then(()=>{enabled=true;updateBtn();})
+                  .catch(()=>{ enabled=true; updateBtn(); }); // will play on next gesture
+  }
+  function doPause(){ if(audioEl) audioEl.pause(); enabled=false; updateBtn(); }
+  function updateBtn(){ btn.classList.toggle('muted', !audioEl || audioEl.paused); }
 
+  btn.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(!ready){ wantPlay=true; prepare(); return; }
+    if(audioEl.paused) doPlay(); else doPause();
+  });
+
+  // start on the first interaction with the story (same gesture that begins it)
   function kick(){
-    if(!started && enabled) startAudio();
-    else if(started && ctx && ctx.state==='suspended') ctx.resume();
+    if(!ready){ wantPlay=true; prepare(); }
+    else if(enabled && audioEl.paused){ doPlay(); }
   }
-  ['click','keydown','touchstart','pointerdown'].forEach(ev=>
+  ['pointerdown','click','keydown','touchend'].forEach(ev=>
     document.addEventListener(ev, kick, {passive:true}));
 
+  // pre-render immediately so the clip is ready before the first click
+  if(document.readyState!=='loading') prepare();
+  else document.addEventListener('DOMContentLoaded', prepare);
   updateBtn();
 })();
 </script>
