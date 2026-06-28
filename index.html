@@ -4,6 +4,67 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Renjith &amp; Sanika — Our Love Story</title>
+<meta name="description" content="Renjith &amp; Sanika invite you to celebrate their engagement — 6th September 2026 at Le Vivanta, Virar. Muhurtham 12:00–12:30 PM." />
+<meta name="keywords" content="Renjith and Sanika, Renjith Sanika engagement, wedding invitation, engagement invite, 6 September 2026, Le Vivanta Virar" />
+<meta name="author" content="Renjith Nair &amp; Sanika Nair" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#c97b7b" />
+<link rel="canonical" href="https://renjithsanika.mrrenjithnair.com/" />
+<link rel="icon" type="image/jpeg" href="profileSanika.jpg" />
+<link rel="apple-touch-icon" href="center.jpg" />
+
+<!-- Open Graph / WhatsApp & Facebook link preview -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Renjith &amp; Sanika" />
+<meta property="og:url" content="https://renjithsanika.mrrenjithnair.com/" />
+<meta property="og:title" content="Renjith &amp; Sanika — You're Invited 💍" />
+<meta property="og:description" content="Celebrate our engagement with us · 6th September 2026 · Le Vivanta, Virar · Muhurtham 12:00–12:30 PM" />
+<meta property="og:image" content="https://renjithsanika.mrrenjithnair.com/center.jpg" />
+<meta property="og:image:secure_url" content="https://renjithsanika.mrrenjithnair.com/center.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="614" />
+<meta property="og:image:alt" content="Renjith and Sanika watching the sunset together" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Renjith &amp; Sanika — You're Invited 💍" />
+<meta name="twitter:description" content="Celebrate our engagement with us · 6th September 2026 · Le Vivanta, Virar · Muhurtham 12:00–12:30 PM" />
+<meta name="twitter:image" content="https://renjithsanika.mrrenjithnair.com/center.jpg" />
+
+<!-- Structured data for search engines (schema.org Event) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Engagement of Renjith Nair & Sanika Nair",
+  "description": "Renjith & Sanika invite you to celebrate their engagement. Muhurtham 12:00–12:30 PM.",
+  "startDate": "2026-09-06T09:30:00+05:30",
+  "endDate": "2026-09-06T13:00:00+05:30",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "image": ["https://renjithsanika.mrrenjithnair.com/center.jpg"],
+  "url": "https://renjithsanika.mrrenjithnair.com/",
+  "location": {
+    "@type": "Place",
+    "name": "Le Vivanta — Vivanta Banquets",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "100 Feet Road, Manvelpada",
+      "addressLocality": "Virar East",
+      "postalCode": "401305",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    }
+  },
+  "organizer": [
+    { "@type": "Person", "name": "Renjith Nair" },
+    { "@type": "Person", "name": "Sanika Nair" }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -911,6 +972,10 @@
           <p class="invlabel reveal" style="margin-top:10px;">INVITE YOU TO OUR</p>
           <div class="m15-eng-row reveal"><i></i><p class="engagement" style="margin:0;">ENGAGEMENT</p><i></i></div>
           <p class="m15-when reveal">6th September 2026 · 9:30 AM</p>
+          <p class="reveal" style="margin-top:5px;font-family:var(--sans);">
+            <span style="display:inline-block;font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;">Muhurtham</span><br>
+            <span style="font-family:var(--serif);font-size:16px;color:var(--rose-deep);font-weight:600;">12:00 – 12:30 PM</span>
+          </p>
           <div class="m15-venue reveal">
             <b>Le Vivanta — Vivanta Banquets</b>
             <small>100 Feet Road, Manvelpada, Virar East – 401305</small>
@@ -1068,10 +1133,14 @@
   const audio=new Audio('music.mp3');
   audio.loop=true; audio.preload='auto'; audio.volume=0.55;
   audio.setAttribute('playsinline','');
-  let userPaused=false;
+  audio.load();
+  let userPaused=false, wantPlay=false;
   function updateBtn(){ btn.classList.toggle('muted', audio.paused); }
-  function play(){ audio.play().then(updateBtn).catch(updateBtn); }
-  function pause(){ audio.pause(); updateBtn(); }
+  function play(){
+    wantPlay=true;
+    audio.play().then(updateBtn).catch(updateBtn);
+  }
+  function pause(){ wantPlay=false; audio.pause(); updateBtn(); }
   btn.addEventListener('click', e=>{
     e.stopPropagation();
     if(audio.paused){ userPaused=false; play(); } else { userPaused=true; pause(); }
@@ -1080,6 +1149,9 @@
   function kick(){ if(!userPaused && audio.paused) play(); }
   ['pointerdown','click','keydown','touchend'].forEach(ev=>
     document.addEventListener(ev, kick, {passive:true}));
+  // if the tap fired before the file buffered, retry once it can play
+  ['canplay','canplaythrough','loadeddata'].forEach(ev=>
+    audio.addEventListener(ev, ()=>{ if(wantPlay && !userPaused && audio.paused) play(); }));
   audio.addEventListener('play', updateBtn);
   audio.addEventListener('pause', updateBtn);
   updateBtn();

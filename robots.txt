@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://renjithsanika.mrrenjithnair.com/sitemap.xml
